@@ -1,3 +1,18 @@
-put irc.bash in your $PATH
+(notes
+ (irc.bash will kill anything that matches /fnotify/))
 
-irc.bash will kill anything that matches /fnotify/
+(installation
+ (remotely
+  (mkdir -p ~/.irssi/scripts/autorun)
+  (cd ~/.irssi/scripts)
+  (wget http://www.leemhuis.info/files/fnotify/fnotify)
+  (cd autorun/)
+  (ln -s ../fnotify)
+  (in irssi, if it's already open and you don't want to restart it
+   (/load perl)
+   (/script load fnotify)))
+ (locally
+  (put irc.bash in your $PATH)
+  (run irc.bash)))
+
+

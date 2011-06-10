@@ -3,3 +3,6 @@
   irc_notify_d.bash
   (scan for existing system daemons, start own if one can't be found)))
 (notification daemon should reconnect when necesary)
+(kill remote 'tail -f ~/.irssi/fnotify')
+(trap INT TERM EXIT)
+(kill local 'tail -f ~/.irssi/fnotify' with %1 or $! or something)
