@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # mostly stolen from
 # http://andy.delcambre.com/2008/12/06/growl-notifications-with-irssi.html
@@ -24,8 +24,18 @@ fi
 #connect to remote screen with irssi in it
 ssh -t ${username}@${hostname} 'screen -xR'
 
-# Kill local notifier
-ps axu|awk '{if($0 ~ /fnotify/ && $0 ~ /irssi/ && $0 !~ /awk/) print $2}' | \
+#Kill local notifier
+# using square brackets in the regex prevents this process from killing itself
+ps axu|awk '{if($0 ~ /[f]notify/ && $0 ~ /irssi/) print $2}' | \
 while read id; do
   kill $id
 done
+
+echo "cleaning up remote notifier"
+#kill remote notifier
+# using square brackets in the regex prevents this process from killing itself
+(ssh ${username}@${hostname} -o PermitLocalCommand=no \
+  "ps axu|awk '{if(\$0 ~ /[f]notify/ && \$0 ~ /irssi/) print \$2}' | \\
+  while read id; do
+    kill \$id
+  done")
