@@ -3,5 +3,6 @@
  (maybe there's an existing daemon to hook into, maybe write one from
   irc_notify_d.bash
   (scan for existing system daemons, start own if one can't be found)))
-(trap INT TERM EXIT)
-(kill local 'tail -f ~/.irssi/fnotify' with %1 or $! or something)
+(use pidfiles generated with user@server.pid.$RANDOM
+ (possibly use mktemp))
+(trap INT TERM EXIT and properly kill subshells)

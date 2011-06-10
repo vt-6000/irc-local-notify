@@ -6,11 +6,11 @@
 #configuration
 usernamehostname="~/.irc_notify_username_hostname"
 if [ -e usernamehostname ]; then
-  read username hostname < usernamehostname
+  read username hostname < $usernamehostname
 else
   read -p "what's your remote username? " username
   read -p "what's your remote hostname? " hostname
-  echo "${username} ${hostname}" > usernamehostname
+  echo "${username} ${hostname}" > $usernamehostname
 fi
 
 #start the notifier
