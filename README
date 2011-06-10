@@ -12,7 +12,13 @@
    (/load perl)
    (/script load fnotify)))
  (locally
+  (get notify-send
+   (on ubuntu (sudo aptitude install -y libnotify-bin)))
+  (put your local key on the remote server's approved list
+   (cat ~/.ssh/id_rsa.pub | \
+    ssh user@remote 'sh -c "cat - >>~/.ssh/authorized_keys2"'))
   (put irc.bash in your $PATH)
   (run irc.bash)))
+
 
 
