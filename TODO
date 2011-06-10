@@ -1,0 +1,5 @@
+(separate notification daemon from irc connector
+ (maybe there's an existing daemon to hook into, maybe write one from
+  irc_notify_d.bash
+  (scan for existing system daemons, start own if one can't be found)))
+(notification daemon should reconnect when necesary)

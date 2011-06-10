@@ -1,0 +1,3 @@
+put irc.bash in your $PATH
+
+irc.bash will kill anything that matches /fnotify/
