@@ -5,7 +5,7 @@
 
 #configuration
 usernamehostname="~/.irc_notify_username_hostname"
-if [ -e usernamehostname ]; then
+if [ -e $usernamehostname ]; then
   read username hostname < $usernamehostname
 else
   read -p "what's your remote username? " username
