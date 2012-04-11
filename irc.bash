@@ -14,12 +14,14 @@ else
 fi
 
 #start the notifier
-(ssh ${username}@${hostname} -o PermitLocalCommand=no \
-  ": > .irssi/fnotify; tail -f .irssi/fnotify 2> /dev/null" | \
+(ssh -t ${username}@${hostname} -o PermitLocalCommand=no \ 
+  "trap 'echo Exit requested.; :> ~/.irssi/fnotify; exit 0' SIGINT SIGTERM SIGKILL; tail -f .irssi/fnotify;" | \ 
+  sed -u 's/[<@&]//g' | \
   while read heading message; do
-    notify-send "${heading}" "${message}";
+    notify-send -i gtk-dialog-info -t 9000 -- "${heading}" "${message}"; 
   done
 )&
+
 
 #connect to remote screen with irssi in it
 ssh -t ${username}@${hostname} 'screen -xR'
